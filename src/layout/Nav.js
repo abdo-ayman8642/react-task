@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@mui/styles";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "start", // Center vertically
     alignItems: "center", // Center horizontally
     paddingTop: theme.spacing(2),
-    overflowY: "auto",
+    overflowY: "hidden",
     overflowX: "hidden",
   },
   mainContent: {
@@ -46,6 +46,23 @@ const useStyles = makeStyles((theme) => ({
 
 function VerticalNav() {
   const classes = useStyles();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      const isMobile = window.innerWidth < 800;
+      setIsMobile(isMobile);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const icons = [
     <HomeIcon />,
