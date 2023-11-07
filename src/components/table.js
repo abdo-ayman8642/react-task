@@ -20,6 +20,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import DomainDetails from "./domanDetails";
 import ExportToExcelButton from "./exportButton";
 import ConfirmDelete from "./confirm";
+import BuyDomain from "./buyDomain";
 
 const useStyles = makeStyles({
   customDataGrid: {
@@ -78,6 +79,7 @@ const TableSelection = () => {
 
   const [rowSelectionModel, setRowSelectionModel] = useState([]);
   const [showDetails, setShowDetails] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -264,6 +266,9 @@ const TableSelection = () => {
   const toggleConfirm = () => {
     setShowConfirm(!showConfirm);
   };
+  const toggleForm = () => {
+    setShowForm((prev) => !prev);
+  };
 
   function isObjectEmpty(obj) {
     return Object.keys(obj).length === 0;
@@ -310,6 +315,7 @@ const TableSelection = () => {
           <Button
             variant="contained"
             startIcon={<AddIcon />}
+            onClick={() => setShowForm((prev) => !prev)}
             sx={{
               padding: "10px 20px",
               borderRadius: "30px",
@@ -336,6 +342,7 @@ const TableSelection = () => {
         rowSelectionModel={rowSelectionModel}
       />
       <DomainDetails open={showDetails} toggle={toggle} data={currentDomian} />
+      <BuyDomain open={showForm} toggle={toggleForm} />
       <ConfirmDelete
         open={showConfirm}
         toggle={toggleConfirm}
