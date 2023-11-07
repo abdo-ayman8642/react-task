@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import Avatar from "@mui/material/Avatar";
 import { Badge } from "@mui/material";
-import profilePic from "../AnyConv.com__IMG_9008.jpg";
+import profilePic from "../utils/assets/AnyConv.com__IMG_9008.jpg";
 
 const useStyles = makeStyles((theme) => ({
   searchContainer: {

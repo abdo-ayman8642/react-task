@@ -2,7 +2,7 @@ import { Dialog, DialogContent } from "@mui/material";
 import React from "react";
 import { makeStyles } from "@mui/styles";
 
-import domainLogo from "../undraw_domain_names_re_0uun.svg";
+import domainLogo from "../utils/assets/undraw_domain_names_re_0uun.svg";
 
 const useStyles = makeStyles({
   spans: {

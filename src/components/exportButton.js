@@ -10,6 +10,7 @@ const ExportToExcelButton = ({ filters }) => {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Data");
 
+    // we here define the column headers manually cause we know and we sure about the structure of the data
     worksheet.columns = [
       { header: "ID", key: "id" },
       { header: "Start Date", key: "start_date" },
@@ -17,7 +18,6 @@ const ExportToExcelButton = ({ filters }) => {
       { header: "Price", key: "price" },
     ];
 
-    // Add the data to the worksheet
     worksheet.addRows(filters);
 
     workbook.xlsx.writeBuffer().then((data) => {
@@ -31,7 +31,6 @@ const ExportToExcelButton = ({ filters }) => {
       a.download = "data.xlsx";
       a.click();
 
-      // Clean up
       URL.revokeObjectURL(url);
     });
   }

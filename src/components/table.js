@@ -84,18 +84,14 @@ const TableSelection = () => {
 
   useEffect(() => {
     function handleResize() {
-      // Check if the window width is less than a certain threshold (e.g., 768 pixels for mobile)
       const isMobile = window.innerWidth < 800;
       setIsMobile(isMobile);
     }
 
-    // Attach the event listener when the component mounts
     window.addEventListener("resize", handleResize);
 
-    // Call it initially to set the initial value
     handleResize();
 
-    // Remove the event listener when the component unmounts
     return () => {
       window.removeEventListener("resize", handleResize);
     };

@@ -17,18 +17,14 @@ const MyForm = ({ open, toggle }) => {
 
   useEffect(() => {
     function handleResize() {
-      // Check if the window width is less than a certain threshold (e.g., 768 pixels for mobile)
       const isMobile = window.innerWidth < 900;
       setIsMobile(isMobile);
     }
 
-    // Attach the event listener when the component mounts
     window.addEventListener("resize", handleResize);
 
-    // Call it initially to set the initial value
     handleResize();
 
-    // Remove the event listener when the component unmounts
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -110,58 +106,205 @@ const MyForm = ({ open, toggle }) => {
                     borderColor: "rgba(0, 0, 0, 0.01)",
                   },
                   "& .MuiInputBase-input": {
-                    padding: "13px 8px",
+                    padding: "13px 13px",
                   },
                 }}
               >
                 <Grid item xs={6}>
-                  <TextField fullWidth label="First Name" name="firstname" />
+                  <Controller
+                    name="firstname"
+                    control={control}
+                    defaultValue=""
+                    rules={{ required: "First Name is required" }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="First Name"
+                        error={!!errors.firstname}
+                        helperText={
+                          errors.firstname && errors.firstname.message
+                        }
+                      />
+                    )}
+                  />
                 </Grid>
                 <Grid item xs={6}>
-                  <TextField fullWidth label="Last Name" name="lastname" />
+                  <Controller
+                    name="lastname"
+                    control={control}
+                    defaultValue=""
+                    rules={{ required: "Last Name is required" }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Last Name"
+                        error={!!errors.lastname}
+                        helperText={errors.lastname && errors.lastname.message}
+                      />
+                    )}
+                  />
                 </Grid>
                 <Grid item xs={6}>
-                  <TextField
-                    fullWidth
-                    label="Company Name"
+                  <Controller
                     name="companyname"
+                    control={control}
+                    defaultValue=""
+                    rules={{ required: "Company Name is required" }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Company Name"
+                        error={!!errors.companyname}
+                        helperText={
+                          errors.companyname && errors.companyname.message
+                        }
+                      />
+                    )}
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <TextField fullWidth label="Email" name="email" />
+                  <Controller
+                    name="email"
+                    control={control}
+                    defaultValue=""
+                    rules={{
+                      required: "Email is required",
+                      pattern: {
+                        value: /^\S+@\S+\.\S+$/,
+                        message: "Invalid email format",
+                      },
+                    }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Email"
+                        error={!!errors.email}
+                        helperText={errors.email && errors.email.message}
+                      />
+                    )}
+                  />
                 </Grid>
-
                 <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    type="text"
-                    label="Address Line 1"
+                  <Controller
                     name="Address1"
+                    control={control}
+                    defaultValue=""
+                    rules={{ required: "Address Line 1 is required" }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Address Line 1"
+                        error={!!errors.Address1}
+                        helperText={errors.Address1 && errors.Address1.message}
+                      />
+                    )}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    type="text"
-                    label="Address Line 2"
+                  <Controller
                     name="Address2"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <TextField {...field} fullWidth label="Address Line 2" />
+                    )}
                   />
                 </Grid>
-
                 <Grid item xs={6}>
-                  <TextField fullWidth label="City" name="city" />
+                  <Controller
+                    name="city"
+                    control={control}
+                    defaultValue=""
+                    rules={{ required: "City is required" }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="City"
+                        error={!!errors.city}
+                        helperText={errors.city && errors.city.message}
+                      />
+                    )}
+                  />
                 </Grid>
                 <Grid item xs={6}>
-                  <TextField fullWidth label="State" name="state" />
+                  <Controller
+                    name="state"
+                    control={control}
+                    defaultValue=""
+                    rules={{ required: "State is required" }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="State"
+                        error={!!errors.state}
+                        helperText={errors.state && errors.state.message}
+                      />
+                    )}
+                  />
                 </Grid>
                 <Grid item xs={6}>
-                  <TextField fullWidth label="Zip Code" name="zipcode" />
+                  <Controller
+                    name="zipcode"
+                    control={control}
+                    defaultValue=""
+                    rules={{ required: "Zip Code is required" }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Zip Code"
+                        error={!!errors.zipcode}
+                        helperText={errors.zipcode && errors.zipcode.message}
+                      />
+                    )}
+                  />
                 </Grid>
                 <Grid item xs={6}>
-                  <TextField fullWidth label="Phone Number" name="phone" />
+                  <Controller
+                    name="phone"
+                    control={control}
+                    defaultValue=""
+                    rules={{
+                      required: "Phone Number is required",
+                      minLength: {
+                        value: 11,
+                        message: "Phone Number must be at least 11 characters",
+                      },
+                    }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Phone Number"
+                        error={!!errors.phone}
+                        helperText={errors.phone && errors.phone.message}
+                      />
+                    )}
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField fullWidth label="Country" name="country" />
+                  <Controller
+                    name="country"
+                    control={control}
+                    defaultValue=""
+                    rules={{ required: "Country is required" }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Country"
+                        error={!!errors.country}
+                        helperText={errors.country && errors.country.message}
+                      />
+                    )}
+                  />
                 </Grid>
               </Grid>
               <DialogActions sx={{ justifyContent: "center" }}>
